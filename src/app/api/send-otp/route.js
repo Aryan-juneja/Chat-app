@@ -22,12 +22,7 @@ export async function POST(req) {
     const emailResponse = await sendVerificationEmail(email, verifyCode);
     console.log(emailResponse);
 
-    if (emailResponse.status !== 201) {
-      return new Response(JSON.stringify({ message: "Error sending OTP" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+   
 
     // Set the cookie manually using the Set-Cookie header
     const headers = new Headers({
