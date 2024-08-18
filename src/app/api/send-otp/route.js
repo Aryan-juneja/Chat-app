@@ -11,10 +11,13 @@ export async function POST(req) {
     console.log(user);
 
     if (!user) {
-      return new Response(JSON.stringify({ message: "Email is not registered yet" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ message: "Email is not registered yet" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
 
     let verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -22,26 +25,29 @@ export async function POST(req) {
     const emailResponse = await sendVerificationEmail(email, verifyCode);
     console.log(emailResponse);
 
-   
+    
 
-    // Set the cookie manually using the Set-Cookie header
+    // Correctly format the Set-Cookie header
     const headers = new Headers({
       "Content-Type": "application/json",
-      "Set-Cookie": `verify-code=${verifyCode}; HttpOnly; Path=/; Max-Age=${60 * 60 * 24 * 7};
-       ${
-        process.env.NODE_ENV === 'production' ? 'Secure;' : ''
-      }`
+      "Set-Cookie": `verify-code=${verifyCode}; HttpOnly; Path=/; Max-Age=${60 * 60 * 24 * 7}${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
     });
 
-    return new Response(JSON.stringify({ message: "Verification code sent successfully" }), {
-      status: 200,
-      headers,
-    });
+    return new Response(
+      JSON.stringify({ message: "Verification code sent successfully" }),
+      {
+        status: 200,
+        headers,
+      }
+    );
   } catch (error) {
     console.error("Error in POST /api/send-otp:", error);
-    return new Response(JSON.stringify({ message: "Internal server error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ message: "Internal server error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }
