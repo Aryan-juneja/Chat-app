@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentChat } from "@/features/chats/chatSlice";
-import ProfileModal from "../utils/ProfileModal";
+import ProfileModal2 from "../utils/ProfileModal2";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import ScrollableChat from "./ScrollableChat";
 import { getSender, getSenderFull } from "@/utils/getSender";
@@ -177,7 +177,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             {!currentChat.isGroupChat ? (
               <>
                 {getSender(user, currentChat.users)}
-                <ProfileModal user={getSenderFull(user, currentChat.users)} />
+                <ProfileModal2 user={getSenderFull(user, currentChat.users)} />
               </>
             ) : (
               <>

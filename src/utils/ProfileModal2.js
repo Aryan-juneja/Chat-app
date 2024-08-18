@@ -1,5 +1,4 @@
 'use client'
-import UpdateDetailModal from "@/components/UpdateDetailModal";
 import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
@@ -15,11 +14,9 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import { useState } from "react";
 
-const ProfileModal = ({ user, children }) => {
+const ProfileModal2 = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isUpdateOpen, onOpen: onUpdateOpen, onClose: onUpdateClose } = useDisclosure();
 
   return (
     <>
@@ -88,9 +85,8 @@ const ProfileModal = ({ user, children }) => {
         </ModalContent>
       </Modal>
 
-      <UpdateDetailModal isOpen={isUpdateOpen} onClose={onUpdateClose} />
     </>
   );
 };
 
-export default ProfileModal;
+export default ProfileModal2;

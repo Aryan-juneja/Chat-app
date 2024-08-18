@@ -18,6 +18,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch =useDispatch()
+
+  const handleForgot =async()=>{
+    router.push("/forgot");
+  }
   const submitHandler = async () => {
     setLoading(true);
 
@@ -105,6 +109,9 @@ const Login = () => {
       >
         Login
       </Button>
+      <div className="flec">
+      <span className="flec" onClick={handleForgot}>Forgot Password ?</span>
+      </div>
     </VStack>
   );
 };
