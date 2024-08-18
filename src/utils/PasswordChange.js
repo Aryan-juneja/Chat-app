@@ -9,8 +9,8 @@ export async function sendVerificationEmail(email, verifycode) {
             port: 465,
             secure: true, // Use SSL
             auth: {
-                user: process.env.EMAIL_KEY,
-                pass: process.env.EMAIL_PASSWORD_KEY,
+                user: "theprofessorsergio8@gmail.com",
+                pass: "jdkimiwfwvhaumhm",
             },
         });
 
